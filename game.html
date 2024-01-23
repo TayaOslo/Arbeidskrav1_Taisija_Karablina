@@ -63,13 +63,22 @@
 
       <!-- Bildecontainer for fienden -->
       <div class="enemy-container">
-        <div class="img-container dragon-container">
+        <div class="img-container dragon">
           <img class="dragon" src="assets/dragon.png" />
         </div>
       </div>
     </div>
     <script>
       //Denne JS-koden er laget klar for deg. Den trenger du ikke endre på.
+
+      let healerHealthTxt = document.getElementById("healer-health-txt");
+      let archerHealthTxt = document.getElementById("archer-health-txt");
+      let warriorHealthTxt = document.getElementById("warrior-health-txt");
+
+      const imgHealer = document.querySelector(".img-container-healer");
+      const imgArcher = document.querySelector(".img-container-archer");
+      const imgWarrior = document.querySelector(".img-container-warrior");
+      const imgDragon = document.querySelector(".img-container-dragon");
 
       //Stats for heroes
       let heroesArray = [
