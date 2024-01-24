@@ -45,7 +45,7 @@
           <div class="healthbar dragon-health"></div>
           <div class="text-container">
             <p id="dragon-name-txt">Dragens navn</p>
-            <div class ="text-container dragon-health-txt">2000 / 2000 HP</div>
+            <div class="text-container dragon-health-txt">2000 / 2000 HP</div>
           </div>
         </div>
       </div>
@@ -74,12 +74,29 @@
       let healerHealthTxt = document.getElementById("healer-health-txt");
       let archerHealthTxt = document.getElementById("archer-health-txt");
       let warriorHealthTxt = document.getElementById("warrior-health-txt");
-      let dragonHealthTxt = document.getElementById("dragon-health-txt");
+      let dragonHealthTxt = document.querySelector(".dragon-health-txt");
 
-      const imgHealer = document.querySelector(".img-container-healer");
-      const imgArcher = document.querySelector(".img-container-archer");
-      const imgWarrior = document.querySelector(".img-container-warrior");
-      const imgDragon = document.querySelector(".img-container-dragon");
+      const imgHealer = document.querySelector(".img-container.healer");
+      const imgArcher = document.querySelector(".img-container.archer");
+      const imgWarrior = document.querySelector(".img-container.warrior");
+      const imgDragon = document.querySelector(
+        ".img-container.dragon-container"
+      );
+
+      imgHealer.addEventListener("click", attackDragon);
+      function attackDragon() {
+        alert("Henriette Healer damaged Daar Dragon by 100 points");
+      }
+
+      imgArcher.addEventListener("click", attackDragon);
+      function attackDragon() {
+        alert("Ariana Archer damaged Daar Dragon by 400 points");
+      }
+
+      imgWarrior.addEventListener("click", attackDragon);
+      function attackDragon() {
+        alert("Wyona Warrior damaged Daar Dragon by 400 points");
+      }
 
       //Stats for heroes
       let heroesArray = [
@@ -116,8 +133,6 @@
         damage: 200,
         alive: true,
       };
-
-      
     </script>
   </body>
 </html>
