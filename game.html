@@ -119,42 +119,73 @@
         ".img-container.dragon-container"
       );
 
-      imgHealer.addEventListener("click", attackDragon);
-      function attackDragon() {
-        alert("Henriette Healer damaged Daar Dragon by 100 points");
-        let heroHealer = heroesArray[0];
-        dragonObject.currentHP = dragonObject.currentHP - heroHealer.damage;
-        dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP}`;
+      imgHealer.addEventListener("click", function () {
+        attackDragon(heroesArray[0]);
+      });
+
+      imgArcher.addEventListener("click", function () {
+        attackDragon(heroesArray[1]);
+      });
+
+      imgWarrior.addEventListener("click", function () {
+        attackDragon(heroesArray[2]);
+      });
+
+      function attackDragon(hero) {
+        /*if (hero.alive && dragonObject.alive)*/ {
+          let damage = hero.damage;
+          dragonObject.currentHP = dragonObject.currentHP - hero.damage;
+          //dragonObject.currentHP -= damage;
+          dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP}`;
+
+          alert(`${hero.name} damaged Daar Dragon by ${damage} points`);
+
+          /*if (dragonObject.currentHP <= 0) {
+            dragonObject.currentHP = 0;
+            dragonObject.alive = false;
+            // Perform actions for the dragon being defeated
+            // You might want to update the UI accordingly.
+          }*/
+        }
       }
 
-      imgArcher.addEventListener("click", attackDragon1);
-      function attackDragon1() {
-        alert("Ariana Archer damaged Daar Dragon by 400 points");
-        let heroArcher = heroesArray[1];
-        dragonObject.currentHP = dragonObject.currentHP - heroArcher.damage;
-        dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP}`;
-      }
+      /*imgHealer.addEventListener("click", attackDragon);
+            function attackDragon() {
+              alert("Henriette Healer damaged Daar Dragon by 100 points");
+              let heroHealer = heroesArray[0];
+              dragonObject.currentHP = dragonObject.currentHP - heroHealer.damage;
+              dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP}`;
+            }
 
-      imgWarrior.addEventListener("click", attackDragon2);
-      function attackDragon2() {
-        alert("Wyona Warrior damaged Daar Dragon by 400 points");
-        let heroWarrior = heroesArray[2];
-        dragonObject.currentHP = dragonObject.currentHP - heroWarrior.damage;
-        dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP}`;
-      }
+            imgArcher.addEventListener("click", attackDragon1);
+            function attackDragon1() {
+              alert("Ariana Archer damaged Daar Dragon by 400 points");
+              let heroArcher = heroesArray[1];
+              dragonObject.currentHP = dragonObject.currentHP - heroArcher.damage;
+              dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP}`;
+            }
 
-    //  let hero1 = heroesArray[0];
-     // console.log(hero1);
+            imgWarrior.addEventListener("click", attackDragon2);
+            function attackDragon2() {
+              alert("Wyona Warrior damaged Daar Dragon by 400 points");
+              let heroWarrior = heroesArray[2];
+              dragonObject.currentHP = dragonObject.currentHP - heroWarrior.damage;
+              dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP}`;
+            }*/
+
+      //  let hero1 = heroesArray[0];
+      // console.log(hero1);
 
       //console.log(hero1.damage);
 
-     // console.log(dragonObject);
+      // console.log(dragonObject);
 
-     // console.log(
-     //   (dragonObject.currentHP = dragonObject.currentHP - hero1.damage)
-     // );
+      // console.log(
+      //   (dragonObject.currentHP = dragonObject.currentHP - hero1.damage)
+      // );
 
       //console.log(dragonObject);
     </script>
   </body>
 </html>
+        
