@@ -71,33 +71,6 @@
     <script>
       //Denne JS-koden er laget klar for deg. Den trenger du ikke endre på.
 
-      let healerHealthTxt = document.getElementById("healer-health-txt");
-      let archerHealthTxt = document.getElementById("archer-health-txt");
-      let warriorHealthTxt = document.getElementById("warrior-health-txt");
-      let dragonHealthTxt = document.querySelector(".dragon-health-txt");
-
-      const imgHealer = document.querySelector(".img-container.healer");
-      const imgArcher = document.querySelector(".img-container.archer");
-      const imgWarrior = document.querySelector(".img-container.warrior");
-      const imgDragon = document.querySelector(
-        ".img-container.dragon-container"
-      );
-
-      imgHealer.addEventListener("click", attackDragon);
-      function attackDragon() {
-        alert("Henriette Healer damaged Daar Dragon by 100 points");
-      }
-
-      imgArcher.addEventListener("click", attackDragon);
-      function attackDragon() {
-        alert("Ariana Archer damaged Daar Dragon by 400 points");
-      }
-
-      imgWarrior.addEventListener("click", attackDragon);
-      function attackDragon() {
-        alert("Wyona Warrior damaged Daar Dragon by 400 points");
-      }
-
       //Stats for heroes
       let heroesArray = [
         {
@@ -133,6 +106,55 @@
         damage: 200,
         alive: true,
       };
+
+      let healerHealthTxt = document.getElementById("healer-health-txt");
+      let archerHealthTxt = document.getElementById("archer-health-txt");
+      let warriorHealthTxt = document.getElementById("warrior-health-txt");
+      let dragonHealthTxt = document.querySelector(".dragon-health-txt");
+
+      const imgHealer = document.querySelector(".img-container.healer");
+      const imgArcher = document.querySelector(".img-container.archer");
+      const imgWarrior = document.querySelector(".img-container.warrior");
+      const imgDragon = document.querySelector(
+        ".img-container.dragon-container"
+      );
+
+      imgHealer.addEventListener("click", attackDragon);
+      function attackDragon() {
+        alert("Henriette Healer damaged Daar Dragon by 100 points");
+        let heroHealer = heroesArray[0];
+        dragonObject.currentHP = dragonObject.currentHP - heroHealer.damage;
+        dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP}`;
+      }
+
+      imgArcher.addEventListener("click", attackDragon1);
+      function attackDragon1() {
+        alert("Ariana Archer damaged Daar Dragon by 400 points");
+        let heroArcher = heroesArray[1];
+        dragonObject.currentHP = dragonObject.currentHP - heroArcher.damage;
+        dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP}`;
+      }
+
+      imgWarrior.addEventListener("click", attackDragon2);
+      function attackDragon2() {
+        alert("Wyona Warrior damaged Daar Dragon by 400 points");
+        let heroWarrior = heroesArray[2];
+        dragonObject.currentHP = dragonObject.currentHP - heroWarrior.damage;
+        dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP}`;
+      }
+
+    //  let hero1 = heroesArray[0];
+     // console.log(hero1);
+
+      //console.log(hero1.damage);
+
+     // console.log(dragonObject);
+
+     // console.log(
+     //   (dragonObject.currentHP = dragonObject.currentHP - hero1.damage)
+     // );
+
+      //console.log(dragonObject);
     </script>
   </body>
 </html>
