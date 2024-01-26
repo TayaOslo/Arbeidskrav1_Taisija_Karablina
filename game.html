@@ -83,7 +83,7 @@
         },
         {
           id: 1,
-          name: "Ariana archer",
+          name: "Ariana Archer",
           maxHP: 500,
           currentHP: 500,
           damage: 400,
@@ -106,6 +106,11 @@
         damage: 200,
         alive: true,
       };
+
+      let healerNameTxt = document.getElementById("healer-name-txt");
+      let archerNameTxt = document.getElementById("archer-name-txt");
+      let warriorNameTxt = document.getElementById("warrior-name-txt");
+      let dragonNameTxt = document.getElementById("dragon-name-txt");
 
       let healerHealthTxt = document.getElementById("healer-health-txt");
       let archerHealthTxt = document.getElementById("archer-health-txt");
@@ -131,12 +136,29 @@
         attackDragon(heroesArray[2]);
       });
 
+      initialize();
+
+      function initialize() {
+        console.log(heroesArray[0]);
+        healerNameTxt.textContent = `${heroesArray[0].name}`;
+        healerHealthTxt.textContent = `${heroesArray[0].currentHP}/${heroesArray[0].maxHP} HP`;
+
+        archerNameTxt.textContent = `${heroesArray[1].name}`;
+        archerHealthTxt.textContent = `${heroesArray[1].currentHP}/${heroesArray[1].maxHP} HP`;
+
+        warriorNameTxt.textContent = `${heroesArray[2].name}`;
+        warriorHealthTxt.textContent = `${heroesArray[2].currentHP}/${heroesArray[2].maxHP} HP`;
+
+        dragonNameTxt.textContent = `${dragonObject.name}`;
+        dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP} HP`;
+      }
+
       function attackDragon(hero) {
         if (hero.alive && dragonObject.alive) {
           let damage = hero.damage;
           dragonObject.currentHP = dragonObject.currentHP - hero.damage;
           //dragonObject.currentHP -= damage;
-          dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP}`;
+          dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP} HP`;
 
           alert(`${hero.name} damaged Daar Dragon by ${damage} points`);
 
@@ -168,7 +190,6 @@
             }`;
             //randomHero.currentHP -= damage;
 
-            // Update the hero's health text on the UI
             updateHeroHealthText(randomHero);
 
             alert(`${dragonObject.name} has attacked ${randomHero.name}!`);
