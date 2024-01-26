@@ -103,7 +103,7 @@
         name: "Daar Dragon",
         maxHP: 2000,
         currentHP: 2000,
-        damage: 200,
+        damage: 500,
         alive: true,
       };
 
@@ -125,21 +125,26 @@
       );
 
       imgHealer.addEventListener("click", function () {
-        attackDragon(heroesArray[0]);
+        if (heroesArray[0].alive) {
+          attackDragon(heroesArray[0]);
+        }
       });
 
       imgArcher.addEventListener("click", function () {
-        attackDragon(heroesArray[1]);
+        if (heroesArray[1].alive) {
+          attackDragon(heroesArray[1]);
+        }
       });
 
       imgWarrior.addEventListener("click", function () {
-        attackDragon(heroesArray[2]);
+        if (heroesArray[2].alive) {
+          attackDragon(heroesArray[2]);
+        }
       });
 
       initialize();
 
       function initialize() {
-        console.log(heroesArray[0]);
         healerNameTxt.textContent = `${heroesArray[0].name}`;
         healerHealthTxt.textContent = `${heroesArray[0].currentHP}/${heroesArray[0].maxHP} HP`;
 
@@ -155,40 +160,47 @@
 
       function attackDragon(hero) {
         if (hero.alive && dragonObject.alive) {
-          let damage = hero.damage;
-          dragonObject.currentHP = dragonObject.currentHP - hero.damage;
-          //dragonObject.currentHP -= damage;
+          dragonObject.currentHP =
+            dragonObject.currentHP -
+            Math.min(dragonObject.currentHP, hero.damage);
           dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP} HP`;
 
-          alert(`${hero.name} damaged Daar Dragon by ${damage} points`);
+          alert(
+            `${hero.name} damaged ${dragonObject.name} by ${hero.damage} points`
+          );
 
-          /*if (dragonObject.currentHP <= 0) {
-            dragonObject.currentHP = 0;
+          if (dragonObject.currentHP == 0) {
             dragonObject.alive = false;
-            // Perform actions for the dragon being defeated
-            // You might want to update the UI accordingly.
-          }*/
+          }
         }
-        attackHeroes();
-      }
 
-      /*document.addEventListener("DOMContentLoaded", function () {
-        attackHeroes();
-      });*/
+        if (dragonObject.currentHP <= 0) {
+          dragonObject.currentHP = 0;
+          dragonObject.alive = false;
+          handleDragonDefeat();
+        } else {
+          attackHeroes();
+        }
+      }
 
       function attackHeroes() {
         if (dragonObject.alive) {
           // Generate a random index to choose a random hero
-          const randomIndex = Math.floor(Math.random() * heroesArray.length);
-          const randomHero = heroesArray[randomIndex];
+          let randomIndex = Math.floor(Math.random() * heroesArray.length);
+          let randomHero = heroesArray[randomIndex];
+          while (randomHero.alive == false) {
+            console.log("Random index before: ", randomIndex);
+            randomIndex = Math.floor(Math.random() * heroesArray.length);
+            randomHero = heroesArray[randomIndex];
+            console.log("Random index after: ", randomIndex);
+          }
 
           // Check if the randomly chosen hero is alive
           if (randomHero.alive) {
-            const damage = dragonObject.damage;
             randomHero.currentHP = `${
-              randomHero.currentHP - dragonObject.damage
+              randomHero.currentHP -
+              Math.min(randomHero.currentHP, dragonObject.damage)
             }`;
-            //randomHero.currentHP -= damage;
 
             updateHeroHealthText(randomHero);
 
@@ -198,15 +210,6 @@
               randomHero.currentHP = 0;
               randomHero.alive = false;
               handleHeroDefeat(randomHero);
-            }
-
-            // Update the dragon's health text on the UI
-            dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP}`;
-
-            if (dragonObject.currentHP <= 0) {
-              dragonObject.currentHP = 0;
-              dragonObject.alive = false;
-              handleDragonDefeat();
             }
           }
         }
@@ -239,43 +242,6 @@
         console.log(`${dragonObject.name} has been defeated!`);
         // You can add additional logic or UI updates here
       }
-
-      /*imgHealer.addEventListener("click", attackDragon);
-            function attackDragon() {
-              alert("Henriette Healer damaged Daar Dragon by 100 points");
-              let heroHealer = heroesArray[0];
-              dragonObject.currentHP = dragonObject.currentHP - heroHealer.damage;
-              dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP}`;
-            }
-
-            imgArcher.addEventListener("click", attackDragon1);
-            function attackDragon1() {
-              alert("Ariana Archer damaged Daar Dragon by 400 points");
-              let heroArcher = heroesArray[1];
-              dragonObject.currentHP = dragonObject.currentHP - heroArcher.damage;
-              dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP}`;
-            }
-
-            imgWarrior.addEventListener("click", attackDragon2);
-            function attackDragon2() {
-              alert("Wyona Warrior damaged Daar Dragon by 400 points");
-              let heroWarrior = heroesArray[2];
-              dragonObject.currentHP = dragonObject.currentHP - heroWarrior.damage;
-              dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP}`;
-            }*/
-
-      //  let hero1 = heroesArray[0];
-      // console.log(hero1);
-
-      //console.log(hero1.damage);
-
-      // console.log(dragonObject);
-
-      // console.log(
-      //   (dragonObject.currentHP = dragonObject.currentHP - hero1.damage)
-      // );
-
-      //console.log(dragonObject);
     </script>
   </body>
 </html>
