@@ -185,7 +185,6 @@
 
       function attackHeroes() {
         if (dragonObject.alive) {
-          // Generate a random index to choose a random hero
           let randomIndex = Math.floor(Math.random() * heroesArray.length);
           let randomHero = heroesArray[randomIndex];
           while (randomHero.alive == false) {
@@ -197,10 +196,10 @@
 
           // Check if the randomly chosen hero is alive
           if (randomHero.alive) {
-            randomHero.currentHP = `${
-              randomHero.currentHP -
-              Math.min(randomHero.currentHP, dragonObject.damage)
-            }`;
+            randomHero.currentHP -= Math.min(
+              randomHero.currentHP,
+              dragonObject.damage
+            );
 
             updateHeroHealthText(randomHero);
 
@@ -232,6 +231,19 @@
       }
 
       function handleHeroDefeat(hero) {
+        switch (hero.id) {
+          case 0:
+            imgHealer.remove();
+            break;
+          case 1:
+            imgArcher.remove();
+            break;
+          case 2:
+            imgWarrior.remove();
+            break;
+          default:
+            break;
+        }
         // Perform actions when a hero is defeated
         console.log(`${hero.name} has been defeated!`);
         // You can add additional logic or UI updates here
