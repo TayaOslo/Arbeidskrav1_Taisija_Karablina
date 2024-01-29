@@ -103,7 +103,7 @@
         name: "Daar Dragon",
         maxHP: 2000,
         currentHP: 2000,
-        damage: 500,
+        damage: 200,
         alive: true,
       };
 
@@ -165,13 +165,13 @@
             Math.min(dragonObject.currentHP, hero.damage);
           dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP} HP`;
 
-          alert(
-            `${hero.name} damaged ${dragonObject.name} by ${hero.damage} points`
-          );
-
           if (dragonObject.currentHP == 0) {
             dragonObject.alive = false;
           }
+
+          alert(
+            `${hero.name} damaged ${dragonObject.name} by ${hero.damage} points`
+          );
         }
 
         if (dragonObject.currentHP <= 0) {
@@ -194,7 +194,6 @@
             console.log("Random index after: ", randomIndex);
           }
 
-          // Check if the randomly chosen hero is alive
           if (randomHero.alive) {
             randomHero.currentHP -= Math.min(
               randomHero.currentHP,
@@ -247,18 +246,11 @@
         if (heroesArray.every((hero) => !hero.alive)) {
           alert(`Game is lost! ${dragonObject.name} won the game!`);
         }
-        // Perform actions when a hero is defeated
-        console.log(`${hero.name} has been defeated!`);
-        // You can add additional logic or UI updates here
       }
 
       function handleDragonDefeat() {
         alert("Congratulations, you just won the game!!!");
         imgDragon.remove();
-
-        // Perform actions when the dragon is defeated
-        console.log(`${dragonObject.name} has been defeated!`);
-        // You can add additional logic or UI updates here
       }
     </script>
   </body>
