@@ -124,6 +124,19 @@
         ".img-container.dragon-container"
       );
 
+      let healthbarHealerHealth = document.querySelector(
+        ".healthbar.healer-health"
+      );
+      let healthbarArcherHealth = document.querySelector(
+        ".healthbar.archer-health"
+      );
+      let healthbarWarriorHealth = document.querySelector(
+        ".healthbar.warrior-health"
+      );
+      let healthbarDragonHealth = document.querySelector(
+        ".healthbar.dragon-health"
+      );
+
       imgHealer.addEventListener("click", function () {
         if (heroesArray[0].alive) {
           attackDragon(heroesArray[0]);
@@ -164,6 +177,8 @@
             dragonObject.currentHP -
             Math.min(dragonObject.currentHP, hero.damage);
           dragonHealthTxt.textContent = `${dragonObject.currentHP}/${dragonObject.maxHP} HP`;
+          const percentage = `${(300 * dragonObject.currentHP) / dragonObject.maxHP}`;
+          healthbarDragonHealth.style.width = `${percentage}px`;
 
           if (dragonObject.currentHP == 0) {
             dragonObject.alive = false;
@@ -214,15 +229,19 @@
       }
 
       function updateHeroHealthText(hero) {
+        const percentage = `${(300 * hero.currentHP) / hero.maxHP}`;
         switch (hero.id) {
           case 0:
             healerHealthTxt.textContent = `${hero.currentHP}/${hero.maxHP} HP`;
+            healthbarHealerHealth.style.width = `${percentage}px`;
             break;
           case 1:
             archerHealthTxt.textContent = `${hero.currentHP}/${hero.maxHP} HP`;
+            healthbarArcherHealth.style.width = `${percentage}px`;
             break;
           case 2:
             warriorHealthTxt.textContent = `${hero.currentHP}/${hero.maxHP} HP`;
+            healthbarWarriorHealth.style.width = `${percentage}px`;
             break;
           default:
             break;
